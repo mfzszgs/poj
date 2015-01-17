@@ -1,18 +1,15 @@
-#include<stdio>
-typedef class NodeClass * Node;
-
-class NodeClasee{
-char[20];
-Node down;
-Node right;
+#include"2003.h"
+bool TreeNode::IsEmpty()
+{
+	if(FirstChild==NULL && NextSibling==NULL)return 1;
+	else return 0;
 }
-class Tree{
-    
+void TreeNode::Hires(char[] Name)
+{
+	if(FirstChild==NULL)
+	{	
+		FirstChild = new TreeNode();
+		FirstChild.Name=Name;
+	}
+	else if()
 
-
-
-}
-int main{
-
-
-}
