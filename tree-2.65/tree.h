@@ -408,7 +408,10 @@ class tree {
       void     swap(sibling_iterator it);
       /// Exchange two nodes (plus subtrees)
       void     swap(iterator, iterator);
-      
+      /// Exchange the data of two nodes
+      void     swap_data(iterator, iterator);
+      /// Fire the employee;
+      void     fire(iterator);
       /// Count the total number of nodes.
       size_t   size() const;
       /// Count the total number of nodes below the indicated node (plus one).
@@ -1828,6 +1831,26 @@ void tree<T, tree_node_allocator>::swap(iterator one, iterator two)
       }
    }
 
+
+template <class T, class tree_node_allocator>
+void tree<T, tree_node_allocator>::swap_data(iterator one, iterator two)
+   {
+		T	tmp;
+		tmp=one.node->data;
+		one.node->data=two.node->data;
+		two.node->data=tmp;
+   }
+
+template <class T, class tree_node_allocator>
+void tree<T, tree_node_allocator>::fire(iterator it)
+   {
+		while(it.node->first_child)
+		{
+			swap_data(it,child(it,0));
+			it.node=it.node->first_child;
+		}
+		erase(it);
+   }
 // template <class BinaryPredicate>
 // tree<T, tree_node_allocator>::iterator tree<T, tree_node_allocator>::find_subtree(
 //    sibling_iterator subfrom, sibling_iterator subto, iterator from, iterator to, 
